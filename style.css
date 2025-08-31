@@ -1,0 +1,52 @@
+:root{
+  --bg1:#0f172a; --bg2:#1e293b; --card:#0b1220cc; --border:#25314a; --txt:#e5e7eb;
+  --muted:#94a3b8; --accent:#38bdf8; --accent2:#22d3ee; --shadow:0 12px 36px rgba(0,0,0,.35);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; color:var(--txt); font-family:"Noto Sans Thai", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 800px at 10% 10%, #0ea5e9 0%, transparent 30%),
+    radial-gradient(1000px 700px at 90% 20%, #22d3ee 0%, transparent 32%),
+    linear-gradient(180deg,var(--bg1),var(--bg2));
+  display:flex; align-items:center; justify-content:center; padding:24px;
+}
+.wrap{width:100%; max-width:980px}
+.card{
+  background:var(--card); backdrop-filter: blur(8px);
+  border:1px solid var(--border); border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:22px;
+}
+.head{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+.logo{width:72px; height:72px; border-radius:16px; object-fit:cover; border:1px solid var(--border)}
+h1{margin:0; font-size:clamp(18px,2.4vw,28px)}
+.sub{color:var(--muted); margin-top:6px; font-size:clamp(12px,1.8vw,14px)}
+.banner{
+  margin:12px 0 18px; padding:12px 14px; border:1px dashed #375079; border-radius:14px;
+  background:linear-gradient(180deg, #0b1220, #0a1424);
+}
+.form label{font-weight:600; color:#cbd5e1; font-size:14px}
+.row{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
+.row input{
+  flex:1 1 260px; width:100%; padding:14px 16px; font-size:18px; color:#0b1220; background:#fff;
+  border:2px solid #dbeafe; border-radius:14px; outline:none; transition:.2s border;
+}
+.row input:focus{border-color:#60a5fa}
+.btn{
+  flex:0 0 220px; padding:14px 16px; border:none; border-radius:14px; cursor:pointer;
+  background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#002; font-weight:700; font-size:18px;
+  box-shadow:0 6px 16px rgba(34,211,238,.28);
+}
+.msg{margin-top:6px; color:#f87171; min-height:1.3em}
+.note{color:var(--muted); font-size:12px; margin-top:6px}
+.footer{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:16px; flex-wrap:wrap;
+  border-top:1px solid var(--border); padding-top:14px;
+}
+.fb{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
+    background:#0a1220; border:1px solid var(--border); text-decoration:none; color:var(--txt)}
+.fb img{width:22px; height:22px; object-fit:contain}
+.school{font-weight:700}
+.muted{color:#9aa6bb; font-size:13px}

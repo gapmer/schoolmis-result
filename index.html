@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <title>โรงเรียนบ้านหนองไทร • ระบบแสดงผลการเรียน Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <header class="head">
+        <img id="schoolLogo" class="logo" alt="โลโก้โรงเรียนบ้านหนองไทร">
+        <div class="titles">
+          <h1>ระบบแสดงผลการเรียน Online</h1>
+          <p class="sub">Student Result • ระบบแสดงผลการเรียน<br>หลักสูตรแกนกลางการศึกษาขั้นพื้นฐาน • แสดงเกรดรายวิชาและเกรดเฉลี่ย (GPA)</p>
+        </div>
+      </header>
+
+      <div class="banner">ผู้อำนวยการโรงเรียน <strong>นางฉวีวรรณ อินนอก</strong></div>
+
+      <form class="form" action="https://g66.obec.expert/services" method="POST" target="_blank" onsubmit="return validateAndSubmit()">
+        <input type="hidden" name="schoolid" value="31010117">
+        <label for="idcard">เลขบัตรประชาชน 13 หลัก</label>
+        <div class="row">
+          <input id="idcard" name="idcard" inputmode="numeric" autocomplete="off"
+                 placeholder="เช่น 1234567890123" minlength="13" maxlength="13" required>
+          <button id="submitBtn" type="submit" class="btn">ดูคะแนน</button>
+        </div>
+        <div id="msg" class="msg"></div>
+        <p class="note">เมื่อกด “ดูคะแนน” ระบบจะเปิดผลการเรียนจาก SchoolMIS ในแท็บใหม่</p>
+      </form>
+
+      <footer class="footer">
+        <div class="left">
+          <div class="school">โรงเรียนบ้านหนองไทร</div>
+          <div class="muted">สำนักงานคณะกรรมการการศึกษาขั้นพื้นฐาน</div>
+        </div>
+        <a class="fb" href="https://www.facebook.com/share/1AHhTPVLoY/?mibextid=wwXIfr" target="_blank" rel="noopener">
+          <img id="fbLogo" alt="Facebook"> ติดตามข่าวสาร
+        </a>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    const SCHOOL_LOGO_ID = ""; // ใส่ File ID ของโลโก้โรงเรียนที่นี่ (ถ้ามี)
+    const FB_LOGO_ID = "1v7dXi8o136jZ0ydKdk1epSlatHbEv0fa";
+
+    const toDriveView = (id) => id ? `https://drive.google.com/uc?export=view&id=${id}` : "";
+    const schoolLogoEl = document.getElementById('schoolLogo');
+    const fbLogoEl = document.getElementById('fbLogo');
+
+    const schoolLogoSrc = toDriveView(SCHOOL_LOGO_ID);
+    if(schoolLogoSrc){ schoolLogoEl.src = schoolLogoSrc; }
+    else { schoolLogoEl.style.display = 'none'; }
+
+    fbLogoEl.src = toDriveView(FB_LOGO_ID);
+
+    function isThaiId(id){
+      if(!/^\d{13}$/.test(id)) return false;
+      let sum = 0;
+      for(let i=0;i<12;i++){ sum += parseInt(id[i],10) * (13 - i); }
+      const check = (11 - (sum % 11)) % 10;
+      return check === parseInt(id[12],10);
+    }
+    function setMsg(t){ document.getElementById('msg').textContent = t || ''; }
+    function validateAndSubmit(){
+      const input = document.getElementById('idcard');
+      const id = (input.value || '').replace(/\D/g,'');
+      input.value = id;
+      if(!/^\d{13}$/.test(id)){ setMsg('กรุณากรอกเลขบัตรให้ครบ 13 หลัก'); return false; }
+      if(!isThaiId(id)){ setMsg('เลขบัตรไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง'); return false; }
+      setMsg('');
+      return true;
+    }
+    document.getElementById('idcard').addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){ e.preventDefault(); document.getElementById('submitBtn').click(); }
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
