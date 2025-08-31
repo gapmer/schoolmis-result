@@ -1,85 +1,129 @@
 <!doctype html>
 <html lang="th">
 <head>
-  <meta charset="utf-8">
-  <title>โรงเรียนบ้านหนองไทร • ระบบแสดงผลการเรียน Online</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0f172a">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <title>ระบบแสดงผลการเรียน Online • โรงเรียนบ้านหนองไทร</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --bg1:#0f172a; --bg2:#12263a; --card:#0b1220cc;
+      --accent:#38bdf8; --muted:#94a3b8; --txt:#e2e8f0;
+      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:"Noto Sans Thai",system-ui,Arial;
+      color:var(--txt);
+      background:
+        radial-gradient(1200px 800px at 10% 10%, #0ea5e9 0, #0b1220 60%),
+        radial-gradient(1000px 700px at 90% 20%, #22d3ee 0, #0b1220 55%),
+        linear-gradient(180deg,#0f172a,#0b1220);
+      min-height:100%;
+      display:flex; align-items:center; justify-content:center; padding:28px;
+    }
+    .wrap{width:100%; max-width:980px}
+    .card{
+      background:var(--card); backdrop-filter:blur(8px);
+      border:1px solid #1e293b; border-radius:var(--radius);
+      box-shadow:var(--shadow); padding:28px;
+    }
+    .header{display:flex; gap:18px; align-items:center; margin-bottom:18px}
+    .header .logo{
+      width:76px; height:76px; border-radius:14px; object-fit:cover;
+      background:#0b1322; border:1px solid #243342; flex:0 0 76px
+    }
+    .title{font-size:30px; font-weight:800; letter-spacing:.3px}
+    .sub{color:var(--muted); margin-top:6px}
+    .director{margin:20px 0 6px; color:#cbd5e1; padding:12px 14px; border:1px dashed #32455d; border-radius:12px}
+    .field{margin-top:14px}
+    label{display:block; margin-bottom:8px; color:#cbd5e1}
+    .row{display:flex; gap:14px; align-items:center}
+    input[type="text"]{
+      width:100%; padding:16px 18px; font-size:18px; color:#0b1220;
+      background:#f8fafc; border-radius:12px; border:none; outline:2px solid transparent;
+    }
+    input[type="text"]:focus{outline-color:#38bdf8}
+    .btn{
+      padding:16px 28px; font-weight:700; font-size:18px; border-radius:12px; cursor:pointer;
+      border:1px solid #1e293b; color:#e2f1ff; background:#0ea5e9;
+      box-shadow:0 10px 30px rgba(14,165,233,.25);
+    }
+    .btn:hover{filter:brightness(1.05)}
+    .note{margin-top:16px; color:#93c5fd; font-size:14px}
+    .footer{
+      margin-top:28px; display:flex; align-items:center; justify-content:space-between; gap:14px
+    }
+    .school{font-weight:700}
+    .fb{height:42px; width:42px; border-radius:10px; border:1px solid #1e293b}
+    @media (max-width:620px){
+      .title{font-size:24px}
+      .row{flex-direction:column; align-items:stretch}
+      .btn{width:100%}
+    }
+  </style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="card">
-      <header class="head">
-        <img id="schoolLogo" class="logo" alt="โลโก้โรงเรียนบ้านหนองไทร">
-        <div class="titles">
-          <h1>ระบบแสดงผลการเรียน Online</h1>
-          <p class="sub">Student Result • ระบบแสดงผลการเรียน<br>หลักสูตรแกนกลางการศึกษาขั้นพื้นฐาน • แสดงเกรดรายวิชาและเกรดเฉลี่ย (GPA)</p>
+  <div class="wrap">
+    <div class="card">
+      <div class="header">
+        <!-- โลโก้: มี fallback 3 ชั้น (assets → raw GitHub → Google Drive) -->
+        <img id="logo" class="logo" alt="โลโก้โรงเรียน"
+             src="./assets/logo-school.png?v=3"
+             onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/gapmer/schoolmis-result/main/assets/logo-school.png?v=3'; this.onerror=function(){ this.src='https://drive.google.com/uc?export=view&id=DRIVE_FILE_ID'; };"/>
+
+        <div>
+          <div class="title">ระบบแสดงผลการเรียน Online</div>
+          <div class="sub">Student Result • ระบบแสดงผลการเรียน • หลักสูตรแกนกลางการศึกษาขั้นพื้นฐาน • แสดงเกรดรายวิชาและเกรดเฉลี่ย (GPA)</div>
         </div>
-      </header>
+      </div>
 
-      <div class="banner">ผู้อำนวยการโรงเรียน <strong>นางฉวีวรรณ อินนอก</strong></div>
+      <div class="director">ผู้อำนวยการโรงเรียน <b>นางฉวีวรรณ อินนอก</b></div>
 
-      <form class="form" action="https://g66.obec.expert/services" method="POST" target="_blank" onsubmit="return validateAndSubmit()">
-        <input type="hidden" name="schoolid" value="31010117">
+      <form class="field" action="https://g66.obec.expert/services" method="POST" target="_blank" onsubmit="return validateForm()">
         <label for="idcard">เลขบัตรประชาชน 13 หลัก</label>
         <div class="row">
-          <input id="idcard" name="idcard" inputmode="numeric" autocomplete="off"
-                 placeholder="เช่น 1234567890123" minlength="13" maxlength="13" required>
-          <button id="submitBtn" type="submit" class="btn">ดูคะแนน</button>
+          <input id="idcard" name="idcard" type="text" placeholder="เช่น 1234567890123" maxlength="13" inputmode="numeric" />
+          <input type="hidden" name="schoolid" value="31010117" />
+          <button type="submit" class="btn">ดูคะแนน</button>
         </div>
-        <div id="msg" class="msg"></div>
-        <p class="note">เมื่อกด “ดูคะแนน” ระบบจะเปิดผลการเรียนจาก SchoolMIS ในแท็บใหม่</p>
+        <div class="note">เมื่อกด “ดูคะแนน” ระบบจะเปิดผลการเรียนจาก SchoolMIS ในแท็บใหม่</div>
       </form>
 
-      <footer class="footer">
-        <div class="left">
+      <div class="footer">
+        <div>
           <div class="school">โรงเรียนบ้านหนองไทร</div>
-          <div class="muted">สำนักงานคณะกรรมการการศึกษาขั้นพื้นฐาน</div>
+          <div class="sub">สำนักงานคณะกรรมการการศึกษาขั้นพื้นฐาน</div>
         </div>
-        <a class="fb" href="https://www.facebook.com/share/1AHhTPVLoY/?mibextid=wwXIfr" target="_blank" rel="noopener">
-          <img id="fbLogo" alt="Facebook"> ติดตามข่าวสาร
+
+        <!-- ปุ่ม Facebook: มี fallback เช่นกัน -->
+        <a href="https://www.facebook.com/share/1AHhTPVLoY/?mibextid=wwXIfr" target="_blank" rel="noopener">
+          <img class="fb" alt="Facebook Page"
+               src="./assets/facebook.png?v=3"
+               onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/gapmer/schoolmis-result/main/assets/facebook.png?v=3';"/>
         </a>
-      </footer>
-    </section>
-  </main>
+      </div>
+    </div>
+  </div>
 
   <script>
-    const SCHOOL_LOGO_ID = "1czzclepZH1ms4Ym-0lHojBnqrI08AX01"; // ใส่ File ID ของโลโก้โรงเรียนที่นี่ (ถ้ามี)
-    const FB_LOGO_ID = "1v7dXi8o136jZ0ydKdk1epSlatHbEv0fa";
-
-    const toDriveView = (id) => id ? `https://drive.google.com/uc?export=view&id=${id}` : "";
-    const schoolLogoEl = document.getElementById('schoolLogo');
-    const fbLogoEl = document.getElementById('fbLogo');
-
-    const schoolLogoSrc = toDriveView(SCHOOL_LOGO_ID);
-    if(schoolLogoSrc){ schoolLogoEl.src = schoolLogoSrc; }
-    else { schoolLogoEl.style.display = 'none'; }
-
-    fbLogoEl.src = toDriveView(FB_LOGO_ID);
-
-    function isThaiId(id){
-      if(!/^\d{13}$/.test(id)) return false;
-      let sum = 0;
-      for(let i=0;i<12;i++){ sum += parseInt(id[i],10) * (13 - i); }
-      const check = (11 - (sum % 11)) % 10;
-      return check === parseInt(id[12],10);
-    }
-    function setMsg(t){ document.getElementById('msg').textContent = t || ''; }
-    function validateAndSubmit(){
-      const input = document.getElementById('idcard');
-      const id = (input.value || '').replace(/\D/g,'');
-      input.value = id;
-      if(!/^\d{13}$/.test(id)){ setMsg('กรุณากรอกเลขบัตรให้ครบ 13 หลัก'); return false; }
-      if(!isThaiId(id)){ setMsg('เลขบัตรไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง'); return false; }
-      setMsg('');
+    function validateForm(){
+      const idcard = document.getElementById("idcard").value.trim();
+      if (idcard.length !== 13 || !/^\d{13}$/.test(idcard)) {
+        alert("กรุณากรอกเลขบัตรประชาชน 13 หลักให้ถูกต้อง");
+        return false;
+      }
       return true;
     }
-    document.getElementById('idcard').addEventListener('keydown', (e)=>{
-      if(e.key === 'Enter'){ e.preventDefault(); document.getElementById('submitBtn').click(); }
+    document.getElementById('idcard').addEventListener('keydown', e=>{
+      if (e.key === 'Enter') e.target.form.requestSubmit();
     });
   </script>
-  <script src="script.js"></script>
 </body>
 </html>
