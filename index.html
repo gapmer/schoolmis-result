@@ -3,126 +3,162 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="theme-color" content="#ffffff" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
   <meta http-equiv="Pragma" content="no-cache"/>
   <meta http-equiv="Expires" content="0"/>
   <title>ระบบแสดงผลการเรียน Online • โรงเรียนบ้านหนองไทร</title>
+
+  <!-- ฟอนต์ไทยอ่านง่าย -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;600;800&display=swap" rel="stylesheet"/>
 
   <style>
     :root{
-      --bg1:#0f172a; --bg2:#12263a; --card:#0b1220cc;
-      --accent:#38bdf8; --muted:#94a3b8; --txt:#e2e8f0;
-      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
+      --bg:#f7fafc;             /* พื้นหลังขาวนวล */
+      --card:#ffffff;           /* กล่องขาว */
+      --border:#e5e7eb;         /* เส้นคั่นอ่อนๆ */
+      --txt:#0f172a;            /* ตัวหนังสือหลัก */
+      --muted:#6b7280;          /* ตัวหนังสือรอง */
+      --primary:#0ea5e9;        /* สีปุ่ม */
+      --primary-2:#22d3ee;      /* ไล่สีปุ่ม */
+      --shadow:0 10px 30px rgba(2,6,23,.08);
+      --radius:20px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family:"Noto Sans Thai",system-ui,Arial;
-      color:var(--txt);
+      margin:0; font-family:"Noto Sans Thai",system-ui,Arial; color:var(--txt);
       background:
-        radial-gradient(1200px 800px at 10% 10%, #0ea5e9 0, #0b1220 60%),
-        radial-gradient(1000px 700px at 90% 20%, #22d3ee 0, #0b1220 55%),
-        linear-gradient(180deg,#0f172a,#0b1220);
-      min-height:100%;
-      display:flex; align-items:center; justify-content:center; padding:28px;
+        radial-gradient(1200px 800px at 8% 10%, rgba(14,165,233,.08), transparent 35%),
+        radial-gradient(900px 600px at 92% 18%, rgba(34,211,238,.10), transparent 38%),
+        var(--bg);
+      display:flex; align-items:center; justify-content:center; padding:24px;
     }
     .wrap{width:100%; max-width:980px}
     .card{
-      background:var(--card); backdrop-filter:blur(8px);
-      border:1px solid #1e293b; border-radius:var(--radius);
-      box-shadow:var(--shadow); padding:28px;
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      box-shadow:var(--shadow); padding:26px;
     }
-    .header{display:flex; gap:18px; align-items:center; margin-bottom:18px}
-    .header .logo{
-      width:76px; height:76px; border-radius:14px; object-fit:cover;
-      background:#0b1322; border:1px solid #243342; flex:0 0 76px
+    .head{display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-bottom:6px}
+    .logo{
+      width:72px; height:72px; flex:0 0 72px; border-radius:16px; object-fit:cover;
+      border:1px solid var(--border); background:#eef2ff;
     }
-    .title{font-size:30px; font-weight:800; letter-spacing:.3px}
-    .sub{color:var(--muted); margin-top:6px}
-    .director{margin:20px 0 6px; color:#cbd5e1; padding:12px 14px; border:1px dashed #32455d; border-radius:12px}
-    .field{margin-top:14px}
-    label{display:block; margin-bottom:8px; color:#cbd5e1}
-    .row{display:flex; gap:14px; align-items:center}
-    input[type="text"]{
-      width:100%; padding:16px 18px; font-size:18px; color:#0b1220;
-      background:#f8fafc; border-radius:12px; border:none; outline:2px solid transparent;
+    h1{margin:0; font-size:clamp(20px,2.6vw,30px); letter-spacing:.2px}
+    .sub{color:var(--muted); margin-top:6px; font-size:clamp(12px,1.6vw,14px)}
+    .badge{
+      margin:16px 0 18px; padding:12px 14px; border-radius:14px;
+      background:linear-gradient(180deg,#ffffff,#f8fafc); border:1px dashed #d1d5db; color:#111827;
     }
-    input[type="text"]:focus{outline-color:#38bdf8}
+    .row{display:flex; gap:12px; flex-wrap:wrap; margin-top:8px}
+    .row input[type="text"]{
+      flex:1 1 260px; width:100%; padding:14px 16px; font-size:18px; color:#0b1220; background:#fff;
+      border:2px solid #e5e7eb; border-radius:14px; outline:none; transition:.18s border;
+    }
+    .row input[type="text"]:focus{border-color:#93c5fd}
     .btn{
-      padding:16px 28px; font-weight:700; font-size:18px; border-radius:12px; cursor:pointer;
-      border:1px solid #1e293b; color:#e2f1ff; background:#0ea5e9;
-      box-shadow:0 10px 30px rgba(14,165,233,.25);
+      flex:0 0 210px; padding:14px 18px; border:none; border-radius:14px; cursor:pointer;
+      background:linear-gradient(90deg,var(--primary),var(--primary-2)); color:#002; font-weight:800; font-size:18px;
+      box-shadow:0 10px 24px rgba(14,165,233,.25);
     }
-    .btn:hover{filter:brightness(1.05)}
-    .note{margin-top:16px; color:#93c5fd; font-size:14px}
+    .note{color:#64748b; font-size:12px; margin-top:6px}
     .footer{
-      margin-top:28px; display:flex; align-items:center; justify-content:space-between; gap:14px
+      display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:18px; flex-wrap:wrap;
+      border-top:1px solid var(--border); padding-top:14px;
     }
-    .school{font-weight:700}
-    .fb{height:42px; width:42px; border-radius:10px; border:1px solid #1e293b}
-    @media (max-width:620px){
-      .title{font-size:24px}
-      .row{flex-direction:column; align-items:stretch}
-      .btn{width:100%}
+    .school{font-weight:800}
+    .fb{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:44px; height:44px; border-radius:12px; border:1px solid var(--border); background:#0ea5e91a;
     }
+    .fb img{width:24px; height:24px; object-fit:contain}
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
-      <div class="header">
-        <!-- โลโก้: มี fallback 3 ชั้น (assets → raw GitHub → Google Drive) -->
-        <img id="logo" class="logo" alt="โลโก้โรงเรียน"
-             src="./assets/logo-school.png?v=3"
-             onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/gapmer/schoolmis-result/main/assets/logo-school.png?v=3'; this.onerror=function(){ this.src='https://drive.google.com/uc?export=view&id=DRIVE_FILE_ID'; };"/>
-
+      <!-- ส่วนหัว + โลโก้ -->
+      <div class="head">
+        <img
+          class="logo" alt="โลโก้โรงเรียน"
+          src="./assets/logo-school.png?v=4"
+          onerror="
+            this.onerror=null;
+            this.src='https://raw.githubusercontent.com/gapmer/schoolmis-result/main/assets/logo-school.png?v=4';
+            this.onerror=function(){
+              this.src='https://drive.google.com/uc?export=view&id=DRIVE_FILE_ID';
+            };
+          "
+        />
         <div>
-          <div class="title">ระบบแสดงผลการเรียน Online</div>
+          <h1>ระบบแสดงผลการเรียน Online</h1>
           <div class="sub">Student Result • ระบบแสดงผลการเรียน • หลักสูตรแกนกลางการศึกษาขั้นพื้นฐาน • แสดงเกรดรายวิชาและเกรดเฉลี่ย (GPA)</div>
         </div>
       </div>
 
-      <div class="director">ผู้อำนวยการโรงเรียน <b>นางฉวีวรรณ อินนอก</b></div>
+      <!-- ป้ายประกาศ/ผอ. -->
+      <div class="badge">ผู้อำนวยการโรงเรียน <b>นางฉวีวรรณ อินนอก</b></div>
 
-      <form class="field" action="https://g66.obec.expert/services" method="POST" target="_blank" onsubmit="return validateForm()">
+      <!-- ฟอร์มส่งไป SchoolMIS โดยตรง (POST) -->
+      <form
+        action="https://g66.obec.expert/services"
+        method="POST"
+        target="_blank"
+        autocomplete="off"
+        onsubmit="return checkID()"
+        class="form"
+      >
         <label for="idcard">เลขบัตรประชาชน 13 หลัก</label>
         <div class="row">
-          <input id="idcard" name="idcard" type="text" placeholder="เช่น 1234567890123" maxlength="13" inputmode="numeric" />
+          <input
+            id="idcard"
+            name="idcard"
+            type="text"
+            placeholder="เช่น 1234567890123"
+            maxlength="13"
+            inputmode="numeric"
+            pattern="\d{13}"
+            title="กรุณากรอกตัวเลข 13 หลัก"
+            required
+          />
           <input type="hidden" name="schoolid" value="31010117" />
           <button type="submit" class="btn">ดูคะแนน</button>
         </div>
-        <div class="note">เมื่อกด “ดูคะแนน” ระบบจะเปิดผลการเรียนจาก SchoolMIS ในแท็บใหม่</div>
+        <div class="note">เมื่อกด “ดูคะแนน” ระบบจะส่งไปยังหน้าแสดงผลการเรียนของ SchoolMIS ในแท็บใหม่ทันที</div>
       </form>
 
+      <!-- ท้ายหน้า + Facebook -->
       <div class="footer">
         <div>
           <div class="school">โรงเรียนบ้านหนองไทร</div>
           <div class="sub">สำนักงานคณะกรรมการการศึกษาขั้นพื้นฐาน</div>
         </div>
 
-        <!-- ปุ่ม Facebook: มี fallback เช่นกัน -->
-        <a href="https://www.facebook.com/share/1AHhTPVLoY/?mibextid=wwXIfr" target="_blank" rel="noopener">
-          <img class="fb" alt="Facebook Page"
-               src="./assets/facebook.png?v=3"
-               onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/gapmer/schoolmis-result/main/assets/facebook.png?v=3';"/>
+        <a class="fb" href="https://www.facebook.com/share/1AHhTPVLoY/?mibextid=wwXIfr" target="_blank" rel="noopener">
+          <img
+            alt="Facebook Page"
+            src="./assets/facebook.png?v=4"
+            onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/gapmer/schoolmis-result/main/assets/facebook.png?v=4';"
+          />
         </a>
       </div>
     </div>
   </div>
 
   <script>
-    function validateForm(){
-      const idcard = document.getElementById("idcard").value.trim();
-      if (idcard.length !== 13 || !/^\d{13}$/.test(idcard)) {
-        alert("กรุณากรอกเลขบัตรประชาชน 13 หลักให้ถูกต้อง");
+    // ตรวจเลขบัตรก่อนส่ง (ตัวเลข 13 หลัก)
+    function checkID(){
+      const v = (document.getElementById('idcard').value || '').trim();
+      if(!/^\d{13}$/.test(v)){
+        alert('กรุณากรอกเลขบัตรประชาชนให้ครบ 13 หลัก (เฉพาะตัวเลข)');
         return false;
       }
-      return true;
+      return true; // ส่งฟอร์มไป SchoolMIS
     }
-    document.getElementById('idcard').addEventListener('keydown', e=>{
-      if (e.key === 'Enter') e.target.form.requestSubmit();
+
+    // อนุญาตกด Enter เพื่อส่งแบบฟอร์ม
+    document.getElementById('idcard')?.addEventListener('keydown', e=>{
+      if(e.key === 'Enter'){ e.target.form.requestSubmit(); }
     });
   </script>
 </body>
